@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 기초 예제2</title>
+</head>
+<body>
+    <ul class="car">
+        <li>벤틀리</li>
+        <li>머스탱</li>
+        <li id="lamborghini">람보르기니</li>
+    </ul>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    const $lists = $("li");
+    const $ul = $("ul.car");
+    const $li = $("#lamborghini");
+
+    console.log($ul.find("#lamborghini").text());
+    $ul.closest("body").css("background-color", "orange").find(".car").children().eq(1).text("포르쉐");
+    console.log($li.prev().text());
+    console.log($li.prev().next().text());
+
+    // $ul.children().first().text("페라리");
+    // $ul.parent().css('background-color', 'yellow');
+    // console.log($ul.parent().css('background-color'));
+    // console.log($($ul.children()[2]).text());
+    // console.log($ul.children().last().text());
+    // console.log($ul.children().eq(2).text());
+    // $ul.children().last().remove();
+    // $ul.append("<li>벤틀리</li>");
+    // console.log($ul.attr('class'));
+    // $ul.attr('class', 'super-car').children();
+</script>
+</html>

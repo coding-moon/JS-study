@@ -1,0 +1,53 @@
+
+/* body {
+    margin: 0;
+
+} */
+
+
+#header {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: yellow;
+    border: 2px solid  #D873F1;
+    margin: 0 auto;
+
+}
+
+#header span {
+    position: absolute;
+    text-align: center;
+    top: 13px;
+    left: 21px;
+}
+
+.text span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.text {
+    margin: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+fieldset {
+    border: none; 
+    text-align: center;
+    padding: 9px;
+}
+
+input {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 3px solid;
+    margin: 50px;
+    height: 124px;
+    width: 344px;
+    
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사이트 이동</title>
+</head>
+<body>
+    <form name="siteform">
+        <label>
+            무신사 <input type="radio" name="site" value="musinsa">
+        </label>
+        <label>
+            쿠팡 <input type="radio" name="site" value="cupang">
+        </label>
+        <label>
+            네이버 <input type="radio" name="site" value="naver">
+        </label>
+        <label>
+            구글 <input type="radio" name="site" value="google">
+        </label>
+        <div>
+            <input type="button" value="이동">
+        </div>
+        <div>
+            <input type="button" value="이동" onclick="location.reload()">
+        </div>
+        <div>
+            <input type="button" value="앞으로 이동" onclick="history.forward()">
+        </div>
+    </form>
+</body>
+    <script>
+        const button = document.querySelector("input[tye=button");
+        button.addEventListener("click", function(){
+            const site = siteForm.site;
+            let url;
+
+            switch(site) {
+                case "musinsa":
+                    url = "";
+                    break;
+
+                case "cupang":
+                url = "";
+                    break;
+
+                case "naver":
+                url = "";
+                    break;
+
+                case "google":
+                url = "";
+                    break;
+                
+                default:
+                    url = "error.html";
+                    break;
+            }
+        
+            location.href = url;
+        });
+    </script>
+</html>

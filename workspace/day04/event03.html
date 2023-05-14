@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>첨부파일 썸네일</title>
+    <style>
+      label[for='attach'] div {
+        width: 150px;
+        height: 150px;
+        background-image: url('https://cdn-icons-png.flaticon.com/512/272/272446.png');
+        background-size: 100%;
+        cursor: pointer;
+      }
+      #box {
+        position: relative;
+        
+        }
+      .wrap {
+        position: relative;
+        border: 0;
+        right: 7px;
+        left: 165px;
+        top: -148px;
+        width: 13px;
+        height: 13px;
+        background: url(https://cdnimg.melon.co.kr/resource/image/web/member/btn-login-tooltip-close.png) no-repeat left 0;
+      }
+
+    </style>
+  </head>
+  <body>
+        <label for="attach">
+        <div></div>
+        </label>
+        <input type="file" id="attach"  class= "close-default" style="display: none" />
+        <button onclick="def()" class="wrap"></button>
+    
+</body>
+  <script>
+    const file = document.querySelector('input[type=file]');
+    const imgDiv = document.querySelector('label[for=attach] div');
+
+    // x 버튼을 누르면, 기본 이미지로 변경!
+    function def() {
+        imgDiv.style.backgroundImage = `url('https://cdn-icons-png.flaticon.com/512/272/272446.png')`; 
+    }
+
+    file.addEventListener('change', function (e) {
+      let reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = function (e) {
+        let result = e.target.result;
+        if(result.includes("image")){
+            imgDiv.style.backgroundImage = `url('${result}')`; 
+            
+        }else{
+            imgDiv.style.backgroundImage = `url('no_image.png')`; 
+            
+        }
+      };
+    });
+  </script>
+</html>
+<!-- 
+    1. url
+    2. r.e.f
+    3. reader
+    4. onload
+ -->

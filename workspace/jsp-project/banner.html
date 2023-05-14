@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴 이동하기</title>
+    <style>
+        /* Slideshow container */
+.slideshow-container {
+  max-width: 1440px;
+  position: relative;
+  margin: auto;
+  margin-top: 120px;
+}
+
+/* effect */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+/* @-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+} */
+
+/* Next & previous buttons */
+.prev {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;	
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  border-radius: 3px 0 0 3px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;	
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  transform: rotate(180deg);
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+    </style>
+
+</head>
+<body>
+    <div class="slideshow-container">
+        
+        <div class="mySlideDiv fade active">
+            <img src="image/kmong1.jpg"> 
+        </div>
+        
+        <div class="mySlideDiv fade">
+            <img src="image/kmong2.jpg"> 
+        </div>
+        
+        <div class="mySlideDiv fade">
+            <img src="image/kmong3.jpg"> 
+        </div>
+        
+        <div class="mySlideDiv fade">
+            <img src="image/kmong4.jpg"> 
+        </div>
+
+        <a class="prev" onclick="prevSlide()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet" class="css-7kp13n e181xm9y0">
+                <path xmlns="http://www.w3.org/2000/svg" d="M9.41421356,12 L15.7071068,5.70710678 C16.0976311,5.31658249 16.0976311,4.68341751 15.7071068,4.29289322 C15.3165825,3.90236893 14.6834175,3.90236893 14.2928932,4.29289322 L7.29289322,11.2928932 C6.90236893,
+                11.6834175 6.90236893,12.3165825 7.29289322,12.7071068 L14.2928932,19.7071068 C14.6834175,20.0976311 15.3165825,20.0976311 15.7071068,19.7071068 C16.0976311,19.3165825 16.0976311,18.6834175 15.7071068,18.2928932 L9.41421356,12 Z"></path>
+            </svg>
+        </a>
+        <a class="next" onclick="nextSlide()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet" class="css-7kp13n e181xm9y0">
+                <path xmlns="http://www.w3.org/2000/svg" d="M9.41421356,12 L15.7071068,5.70710678 C16.0976311,5.31658249 16.0976311,4.68341751 15.7071068,4.29289322 C15.3165825,3.90236893 14.6834175,3.90236893 
+                14.2928932,4.29289322 L7.29289322,11.2928932 C6.90236893,11.6834175 6.90236893,12.3165825 7.29289322,12.7071068 L14.2928932,19.7071068 C14.6834175,20.0976311 15.3165825,20.0976311 15.7071068,19.7071068 C16.0976311,19.3165825 16.0976311,18.6834175 15.7071068,18.2928932 L9.41421356,12 Z" transform="translate(11.500000, 12.000000) scale(-1, 1) translate(-11.500000, -12.000000) "></path>
+            </svg>
+        </a>
+        
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(function () {
+	$(".mySlideDiv").not(".active").hide(); //화면 로딩 후 첫번째 div를 제외한 나머지 숨김
+	
+	setInterval(nextSlide, 4000); //4초(4000)마다 다음 슬라이드로 넘어감
+});
+
+//이전 슬라이드
+function prevSlide() {
+	$(".mySlideDiv").hide(); //모든 div 숨김
+	var allSlide = $(".mySlideDiv"); //모든 div 객체를 변수에 저장
+	var currentIndex = 0; //현재 나타난 슬라이드의 인덱스 변수
+	
+	//반복문으로 현재 active클래스를 가진 div를 찾아 index 저장
+	$(".mySlideDiv").each(function(index,item){ 
+		if($(this).hasClass("active")) {
+			currentIndex = index;
+		}
+        
+	});
+	
+	//새롭게 나타낼 div의 index
+	var newIndex = 0;
+    
+	if(currentIndex <= 0) {
+		//현재 슬라이드의 index가 0인 경우 마지막 슬라이드로 보냄(무한반복)
+		newIndex = allSlide.length-1;
+	} else {
+		//현재 슬라이드의 index에서 한 칸 만큼 뒤로 간 index 지정
+		newIndex = currentIndex-1;
+	}
+
+	//모든 div에서 active 클래스 제거
+	$(".mySlideDiv").removeClass("active");
+    
+	//새롭게 지정한 index번째 슬라이드에 active 클래스 부여 후 show()
+	$(".mySlideDiv").eq(newIndex).addClass("active");
+	$(".mySlideDiv").eq(newIndex).show();
+
+}
+
+//다음 슬라이드
+function nextSlide() {
+	$(".mySlideDiv").hide();
+	var allSlide = $(".mySlideDiv");
+	var currentIndex = 0;
+	
+	$(".mySlideDiv").each(function(index,item){
+		if($(this).hasClass("active")) {
+			currentIndex = index;
+		}
+        
+	});
+	
+	var newIndex = 0;
+	
+	if(currentIndex >= allSlide.length-1) {
+		//현재 슬라이드 index가 마지막 순서면 0번째로 보냄(무한반복)
+		newIndex = 0;
+	} else {
+		//현재 슬라이드의 index에서 한 칸 만큼 앞으로 간 index 지정
+		newIndex = currentIndex+1;
+	}
+
+	$(".mySlideDiv").removeClass("active");
+	$(".mySlideDiv").eq(newIndex).addClass("active");
+	$(".mySlideDiv").eq(newIndex).show();
+	
+}
+
+</script>
+
+</html>
